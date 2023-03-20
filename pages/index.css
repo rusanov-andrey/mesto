@@ -20,11 +20,14 @@
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__add-photo/profile__add-photo.css);
 @import url(../blocks/profile/__add-photo-text/profile__add-photo-text.css);
-@import url(../blocks);
-@import url(../blocks);
-@import url(../blocks);
-@import url(../blocks);
-@import url(../blocks);
+
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/elements/__item/elements__item.css);
+@import url(../blocks/elements/__image/elements__image.css);
+@import url(../blocks/elements/__title-content/elements__title-content.css);
+@import url(../blocks/elements/__title/elements__title.css);
+@import url(../blocks/elements/__heart/elements__heart.css);
+
 @import url(../blocks);
 @import url(../blocks);
 @import url(../blocks);

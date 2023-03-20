@@ -1,0 +1,13 @@
+.elements__heart
+{
+  margin: 0;
+  padding: 0 22px;
+
+  background-image: url(../../../images/heart.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+
+  width: 22px;
+  height: 79px;
+}
