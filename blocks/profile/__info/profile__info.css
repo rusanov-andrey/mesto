@@ -1,0 +1,11 @@
+.profile__info
+{
+  margin: 0;
+  padding: 0;
+
+  color: white;
+
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}

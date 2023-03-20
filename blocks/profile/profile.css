@@ -1,0 +1,13 @@
+.profile
+{
+  margin: 0;
+  padding: 0;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, auto) 1fr;
+  justify-content: start;
+  
+  box-sizing: border-box;
+  align-items: center;
+}

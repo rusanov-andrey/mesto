@@ -1,0 +1,13 @@
+.profile__title
+{
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  position: relative;
+  align-items: baseline;
+
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 48px;
+}

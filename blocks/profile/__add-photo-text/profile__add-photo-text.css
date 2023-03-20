@@ -1,0 +1,12 @@
+.profile__add-photo-text
+{
+  margin: 0;
+  padding: 0;
+
+  background-image: url(../../../images/add.svg);
+  background-size: 22px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  height: 100%;
+}
