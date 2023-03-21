@@ -1,0 +1,16 @@
+.popup__submit
+{
+  margin: 18px 64px 37px;
+  padding: 0;
+
+  width: calc(430px - 2 * 64px);
+  height: 50px;
+
+  background-color: black;
+  border: none;
+  color: white;
+
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 400;
+}
