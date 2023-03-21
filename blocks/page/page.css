@@ -5,6 +5,7 @@
 
   max-width: 1280px;
   min-width: 320px;
+  box-sizing: border-box;
 
   background: #000;
 
@@ -14,4 +15,13 @@
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
+}
+
+
+@media screen and (max-width: 1280px)
+{
+  .page
+  {
+    padding: 0 calc(0.188541667*100vw	- 41.33333333px) 0;
+  }
 }

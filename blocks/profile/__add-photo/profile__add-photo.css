@@ -11,4 +11,27 @@
 
   background-color: inherit;
   border: 1px solid white;
+  border-radius: 2px;
+}
+
+.profile__add-photo:hover
+{
+  opacity: 60%;
+}
+
+@media screen and (max-width: 1280px)
+{
+  .profile__add-photo
+  {
+    width: calc(0.11719*100vw + 0px);
+  }
+}
+@media screen and (max-width: 800px)
+{
+  .profile__add-photo
+  {
+    margin: 36px auto 0;;
+    width: 282px;
+    justify-self: unset;
+  }
 }

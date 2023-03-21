@@ -1,8 +1,9 @@
-.profile__subtitle
+.footer__copyright
 {
   margin: 0;
   padding: 0;
-  padding-top: 16px;
+
+  color: rgba(84, 84, 84, 1);
 
   font-size: 18px;
   font-weight: 400;
@@ -11,9 +12,8 @@
 
 @media screen and (max-width: 1280px)
 {
-  .profile__subtitle
+  .footer__copyright
   {
-    padding-top: calc(0.002083333*100vw + 13.33333333px);
     font-size: calc(0.004166667*100vw + 12.66666667px);
   }
 }
