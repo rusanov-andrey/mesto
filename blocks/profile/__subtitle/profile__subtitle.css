@@ -1,5 +1,4 @@
-.profile__subtitle
-{
+.profile__subtitle {
   margin: 0;
   padding: 0;
   padding-top: 10px;
@@ -13,18 +12,15 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 1280px)
-{
-  .profile__subtitle
-  {
-    padding-top: calc(0.002083333*100vw + 7.33333333px); 
+@media screen and (max-width: 1280px) {
+  .profile__subtitle {
+    padding-top: calc(0.002083333*100vw + 7.33333333px);
     font-size: calc(0.004166667*100vw + 12.66666667px);
   }
 }
-@media screen and (max-width: 800px)
-{
-  .profile__subtitle
-  {
+
+@media screen and (max-width: 800px) {
+  .profile__subtitle {
     text-align: center;
   }
 }

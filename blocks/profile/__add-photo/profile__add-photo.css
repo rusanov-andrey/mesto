@@ -1,5 +1,4 @@
-.profile__add-photo
-{
+.profile__add-photo {
   margin: 0;
   margin-left: 20px;
   padding: 0;
@@ -21,25 +20,22 @@
 
 }
 
-.profile__add-photo:hover
-{
+.profile__add-photo:hover {
   opacity: 60%;
 }
 
-@media screen and (max-width: 1280px)
-{
-  .profile__add-photo
-  {
+@media screen and (max-width: 1280px) {
+  .profile__add-photo {
     margin-left: calc(0.010416667*100vw + 6.666666667px);
     width: calc(0.11719*100vw + 0px);
     background-size: calc(0.00625*100vw + 14px);
   }
 }
-@media screen and (max-width: 800px)
-{
-  .profile__add-photo
-  {
-    margin: 36px auto 0;;
+
+@media screen and (max-width: 800px) {
+  .profile__add-photo {
+    margin: 36px auto 0;
+    ;
     width: 282px;
     justify-self: unset;
   }

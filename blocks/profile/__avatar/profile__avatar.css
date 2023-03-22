@@ -1,5 +1,4 @@
-.profile__avatar
-{
+.profile__avatar {
   margin: 2px 31px 2px 0px;
   padding: 0;
 
@@ -8,10 +7,8 @@
   border-radius: 59px;
 }
 
-@media screen and (max-width: 800px)
-{
-  .profile__avatar
-  {
+@media screen and (max-width: 800px) {
+  .profile__avatar {
     margin: 2px auto 22px;
   }
 }
