@@ -3,3 +3,11 @@
   margin: 0;
   padding: 0 0 37px;
 }
+
+@media screen and (max-width: 500px)
+{
+  .header
+  {
+    padding-left: 27px;
+  }
+}

@@ -20,3 +20,24 @@
 {
   opacity: 60%;
 }
+
+@media screen and (max-width: 1280px)
+{
+  .popup__close
+  {
+    --popup__close-size: calc(0.0125*100vw + 16px);
+    background-size: var(--popup__close-size);
+    width: var(--popup__close-size);
+    height: var(--popup__close-size);
+    right: calc(var(--popup__close-size) * -1);
+    top: calc(var(--popup__close-size) * -1);
+  }
+}
+@media screen and (max-width: 500px)
+{
+  .popup__close
+  {
+    right: 0;
+    top: calc(var(--popup__close-size) * -1 - 16px);
+  }
+}

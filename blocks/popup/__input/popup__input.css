@@ -18,3 +18,12 @@
 {
   outline: none;
 }
+
+@media screen and (max-width: 500px)
+{
+  .popup__input
+  {
+    margin: 0 22px 30px;
+    width: calc(282px - 2*22px);
+  }
+}

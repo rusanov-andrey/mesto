@@ -29,12 +29,3 @@
     height: calc((0.015625*100vw + 22px) * 0.57143);
   }
 }
-@media screen and (max-width: 800px)
-{
-  .profile__edit
-  {
-    position: absolute;
-    right: -30px;
-    top: 10px;
-  }
-}

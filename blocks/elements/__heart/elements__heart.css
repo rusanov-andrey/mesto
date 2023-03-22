@@ -11,3 +11,8 @@
   width: 22px;
   height: 79px;
 }
+
+.elements__heart:hover
+{
+  background-image: url(../../../images/heart_5.svg);
+}

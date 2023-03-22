@@ -25,3 +25,10 @@
     padding: 0 calc(0.188541667*100vw	- 41.33333333px) 0;
   }
 }
+@media screen and (max-width: 500px)
+{
+  .page
+  {
+    padding: 0;
+  }
+}
