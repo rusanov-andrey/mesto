@@ -11,8 +11,8 @@
   height: 32px;
 
   position: absolute;
-  right: -32px;
-  top: -32px;
+  right: calc(-32px - 6px);
+  top: calc(-32px - 6px);
 }
 
 .popup__close:hover {
@@ -21,12 +21,11 @@
 
 @media screen and (max-width: 1280px) {
   .popup__close {
-    --popup__close-size: calc(0.0125*100vw + 16px);
     background-size: var(--popup__close-size);
     width: var(--popup__close-size);
     height: var(--popup__close-size);
-    right: calc(var(--popup__close-size) * -1);
-    top: calc(var(--popup__close-size) * -1);
+    right: calc(var(--popup__close-size) * -1 - 6px);
+    top: calc(var(--popup__close-size) * -1 - 6px);
   }
 }
 
