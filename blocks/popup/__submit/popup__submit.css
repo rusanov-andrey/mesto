@@ -22,7 +22,7 @@
 
 @media screen and (max-width: 500px) {
   .popup__submit {
-    margin: 18px 22px 37px;
+    margin: 15px 22px 25px;
 
     width: calc(282px - 2 * 22px);
     height: 46px;
