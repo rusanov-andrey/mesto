@@ -144,9 +144,12 @@ function addPhoto(name, photoUrl)
   insertPhotoAtBegin(name, photoUrl);
 }
 
+let popupHover;
 function closePopup() {
   formCallback = NaN;
-  popup.classList.remove('popup_opened');
+  popupHover = document.querySelector('.popup:hover');
+  popupHover.style.opacity = '0';
+  setTimeout(() => {  popupHover.style = ""; popup.classList.remove('popup_opened');}, 500);
 }
 
 function openPhoto(title, link)
@@ -156,10 +159,10 @@ function openPhoto(title, link)
 
   photo.classList.add('photo_opened');
 }
-let hover;
+let photoHover;
 function closePhoto()
 {
-  hover = document.querySelector('.photo:hover');
-  hover.style.opacity = '0';
-  setTimeout(() => {  hover.style = ""; photo.classList.remove('photo_opened');}, 500);
+  photoHover = document.querySelector('.photo:hover');
+  photoHover.style.opacity = '0';
+  setTimeout(() => {  photoHover.style = ""; photo.classList.remove('photo_opened');}, 500);
 }

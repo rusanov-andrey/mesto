@@ -14,4 +14,12 @@
   display: none;
   justify-content: center;
   align-items: center;
+
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+}
+
+.popup:hover {
+  opacity: 1;
 }
