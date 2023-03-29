@@ -30,6 +30,11 @@ let popup = document.querySelector('.popup');
 let popupForm = document.querySelector('.popup__profile-form');
 let popupCloseButton = document.querySelector('.popup__close');
 let addPhotoButton = document.querySelector('.profile__add-photo');
+let formTitle = popup.querySelector('.popup__title');
+let formParam1 = popup.querySelector('#param1');
+let formParam2 = popup.querySelector('#param2');
+let formButton = popup.querySelector('.popup__submit');
+
 
 let photo = document.querySelector('.photo');
 let photoCloseButton = document.querySelector('.photo__close');
@@ -39,11 +44,10 @@ let photoTitle = document.querySelector('.photo__title');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 
-//let profileNameInput = document.querySelector('#param1');
-//let profileAboutInput = document.querySelector('#param2');
-
 let elements = document.querySelector('.elements');
 let elementTemplate = document.querySelector('#element_template').content;
+
+const animationDuration = 500;
 
 init();
 
@@ -108,11 +112,6 @@ function init()
 let formCallback = NaN;
 function openForm(title, placeholder_1, value_1, placeholder_2, value_2, buttonTitle, callback)
 {
-  let formTitle = popup.querySelector('.popup__title');
-  let formParam1 = popup.querySelector('#param1');
-  let formParam2 = popup.querySelector('#param2');
-  let formButton = popup.querySelector('.popup__submit');
-
   formTitle.textContent = title || '';
   formParam1.placeholder = placeholder_1 || '';
   formParam1.value = value_1 || '';
@@ -128,9 +127,6 @@ function saveFormData()
 {
   if( formCallback)
   {
-    let formParam1 = popup.querySelector('#param1');
-    let formParam2 = popup.querySelector('#param2');
-
     formCallback(formParam1.value, formParam2.value);
   }
 }
@@ -149,7 +145,7 @@ function closePopup() {
   formCallback = NaN;
   popupHover = document.querySelector('.popup:hover');
   popupHover.style.opacity = '0';
-  setTimeout(() => {  popupHover.style = ""; popup.classList.remove('popup_opened');}, 500);
+  setTimeout(() => {  popupHover.style = ""; popup.classList.remove('popup_opened');}, animationDuration);
 }
 
 function openPhoto(title, link)
@@ -164,5 +160,5 @@ function closePhoto()
 {
   photoHover = document.querySelector('.photo:hover');
   photoHover.style.opacity = '0';
-  setTimeout(() => {  photoHover.style = ""; photo.classList.remove('photo_opened');}, 500);
+  setTimeout(() => {  photoHover.style = ""; photo.classList.remove('photo_opened');}, animationDuration);
 }
