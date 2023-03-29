@@ -1,0 +1,31 @@
+.photo__close {
+  margin: 0;
+  padding: 0;
+
+  position: absolute;
+  right: -40px;
+  top: -40px;
+
+  width: 32px;
+  height: 32px;
+
+  cursor: pointer;
+
+  background: url(../../../images/close-icon.svg) center / 32px 32px no-repeat;
+}
+
+.photo__close:hover {
+  opacity: 60%;
+}
+
+@media screen and (max-width: 500px) {
+  .photo__close {
+    right: 0;
+    top: -36px;
+
+    width: 20px;
+    height: 20px;
+
+    background-size: 20px 20px;
+  }
+}

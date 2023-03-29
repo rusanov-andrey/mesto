@@ -7,4 +7,6 @@
 
   width: 100%;
   height: calc(282px - 79px);
+
+  cursor: pointer;
 }

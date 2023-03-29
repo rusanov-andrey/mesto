@@ -28,8 +28,13 @@ const initialCards = [
 let editButton = document.querySelector('.profile__edit');
 let popup = document.querySelector('.popup');
 let popupForm = document.querySelector('.popup__profile-form');
-let closeButton = document.querySelector('.popup__close');
+let popupCloseButton = document.querySelector('.popup__close');
 let addPhotoButton = document.querySelector('.profile__add-photo');
+
+let photo = document.querySelector('.photo');
+let photoCloseButton = document.querySelector('.photo__close');
+let photoImage = document.querySelector('.photo__image');
+let photoTitle = document.querySelector('.photo__title');
 
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
@@ -50,7 +55,7 @@ addPhotoButton.addEventListener('click', function () {
   openForm('Новое место', 'Название', '', 'Ссылка на картинку', '', 'Создать', addPhoto);
 });
 
-closeButton.addEventListener('click', closePopup);
+popupCloseButton.addEventListener('click', closePopup);
 
 
 popupForm.addEventListener('submit', function (event) {
@@ -58,6 +63,10 @@ popupForm.addEventListener('submit', function (event) {
   event.preventDefault();
   saveFormData();
   closePopup();
+});
+
+photoCloseButton.addEventListener('click', function(evt) {
+  closePhoto();
 });
 
 
@@ -71,6 +80,7 @@ function insertPhotoAtBegin(name, link)
   const trash = elementItem.querySelector('.elements__trash');
 
   image.src = link;
+  image.alt = name;
   title.textContent = name;
 
   heart.addEventListener('click', function (evt) {
@@ -79,6 +89,10 @@ function insertPhotoAtBegin(name, link)
 
   trash.addEventListener('click', function (evt) {
     evt.target.closest('.elements__item').remove();
+  });
+
+  image.addEventListener('click', function (evt) {
+    openPhoto(evt.target.alt, evt.target.src);
   });
 
   elements.prepend(elementItem);
@@ -133,4 +147,16 @@ function addPhoto(name, photoUrl)
 function closePopup() {
   formCallback = NaN;
   popup.classList.remove('popup_opened');
+}
+
+function openPhoto(title, link)
+{
+  photoTitle.textContent = title;
+  photoImage.src = link;
+
+  photo.classList.add('photo_opened');
+}
+function closePhoto()
+{
+  photo.classList.remove('photo_opened');
 }
