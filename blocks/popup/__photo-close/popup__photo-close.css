@@ -1,4 +1,4 @@
-.photo__close {
+.popup__photo-close {
   margin: 0;
   padding: 0;
 
@@ -14,12 +14,12 @@
   background: url(../../../images/close-icon.svg) center / 32px 32px no-repeat;
 }
 
-.photo__close:hover {
+.popup__photo-close:hover {
   opacity: 60%;
 }
 
 @media screen and (max-width: 500px) {
-  .photo__close {
+  .popup__photo-close {
     right: 0;
     top: -36px;
 

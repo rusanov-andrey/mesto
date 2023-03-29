@@ -35,7 +35,7 @@
                 <h2 class="elements__title">Карачаевск</h2>
                 <button class="elements__heart" type="button" aria-label="Отметить фотографию"></button>
               </div>
-              <div class="elements__trash"></div>
+              <button class="elements__trash"></button>
             </li>
           </template>
         </ul>
@@ -45,23 +45,35 @@
       <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div id="profile-form-popup" class="popup">
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="Отменить изменения"></button>
         <form class="popup__profile-form" name="profile" method="POST">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input id="param1" class="popup__input" type="text" name="profile-name" placeholder="Имя">
-          <input id="param2" class="popup__input" type="text" name="profile-about" placeholder="О себе">
+          <input id="profile-form-name" class="popup__input" type="text" name="profile-name" placeholder="Имя">
+          <input id="profile-form-about" class="popup__input" type="text" name="profile-about" placeholder="О себе">
           <button class="popup__submit" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
 
-    <div class="photo">
-      <div class="photo__container">
-        <img class="photo__image" src="#" alt=""/>
-        <div class="photo__close"></div>
-        <h2 class="photo__title">AAA</h2>
+    <div id="photo-form-popup" class="popup">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="Отменить изменения"></button>
+        <form class="popup__profile-form" name="profile" method="POST">
+          <h2 class="popup__title">Новое место</h2>
+          <input id="photo-form-name" class="popup__input" type="text" name="profile-name" placeholder="Название">
+          <input id="photo-form-link" class="popup__input" type="text" name="profile-about" placeholder="Ссылка на картинку">
+          <button class="popup__submit" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="photo-view-popup" class="popup">
+      <div class="popup__photo-container">
+        <img class="popup__photo-image" src="#" alt=""/>
+        <div class="popup__photo-close"></div>
+        <h2 class="popup__photo-title">AAA</h2>
       </div>
     </div>
   </div>
