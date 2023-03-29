@@ -156,7 +156,10 @@ function openPhoto(title, link)
 
   photo.classList.add('photo_opened');
 }
+let hover;
 function closePhoto()
 {
-  photo.classList.remove('photo_opened');
+  hover = document.querySelector('.photo:hover');
+  hover.style.opacity = '0';
+  setTimeout(() => {  hover.style = ""; photo.classList.remove('photo_opened');}, 500);
 }
