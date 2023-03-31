@@ -6,7 +6,7 @@
   object-position: center;
 
   width: 100%;
-  height: calc(282px - 79px);
+  height: 282px;
 
   cursor: pointer;
 }

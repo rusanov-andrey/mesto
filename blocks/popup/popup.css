@@ -12,15 +12,11 @@
 
   background-color: rgba(0, 0, 0, 0.5);
 
-  display: none;
+  display: flex;
+  visibility: hidden;
   justify-content: center;
   align-items: center;
 
   opacity: 0;
-  transition-property: opacity;
-  transition-duration: 0.5s;
-}
-
-.popup:hover {
-  opacity: 1;
+  transition: visibility 0s 0.5s, opacity 0.5s;
 }

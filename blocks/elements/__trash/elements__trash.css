@@ -13,6 +13,8 @@
 
   background: transparent url(../../../images/trash.svg);
   border: none;
+
+  cursor: pointer;
 }
 
 .elements__trash:hover {

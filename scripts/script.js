@@ -1,37 +1,10 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
-
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 
 const profileEditButton = document.querySelector('.profile__edit');
 
 const profileFormPopup = document.querySelector('#profile-form-popup');
-const profileForm = profileFormPopup.querySelector('.popup__profile-form');
+const profileForm = profileFormPopup.querySelector('.popup__form');
 const profileFormCloseButton = profileFormPopup.querySelector('.popup__close');
 const profileFormName = profileForm.querySelector('#profile-form-name');
 const profileFormAbout = profileForm.querySelector('#profile-form-about');
@@ -40,52 +13,33 @@ const profileFormButton = profileForm.querySelector('.popup__submit');
 const addPhotoButton = document.querySelector('.profile__add-photo');
 
 const photoFormPopup = document.querySelector('#photo-form-popup');
-const photoForm = photoFormPopup.querySelector('.popup__profile-form');
+const photoForm = photoFormPopup.querySelector('.popup__form');
 const photoFormCloseButton = photoFormPopup.querySelector('.popup__close');
 const photoFormName = photoForm.querySelector('#photo-form-name');
 const photoFormLink = photoForm.querySelector('#photo-form-link');
 const photoFormButton = photoForm.querySelector('.popup__submit');
 
-const photoViewPopuo = document.querySelector('#photo-view-popup');
-const photoViewCloseButton = photoViewPopuo.querySelector('.popup__photo-close');
-const photoViewImage = photoViewPopuo.querySelector('.popup__photo-image');
-const photoViewTitle = photoViewPopuo.querySelector('.popup__photo-title');
+const photoViewPopup = document.querySelector('#photo-view-popup');
+const photoViewCloseButton = photoViewPopup.querySelector('.popup__close');
+const photoViewImage = photoViewPopup.querySelector('.popup__photo-image');
+const photoViewTitle = photoViewPopup.querySelector('.popup__photo-title');
 
-const elements = document.querySelector('.elements');
+const cardsContainer = document.querySelector('.elements');
 const elementTemplate = document.querySelector('#element_template').content;
 
 const animationDuration = 500;
 
 init();
 
-profileEditButton.addEventListener('click', function () {
-  openPopup(profileFormPopup);
-  profileFormName.value = profileTitle.textContent;
-  profileFormAbout.value = profileSubtitle.textContent;
-});
-
-addPhotoButton.addEventListener('click', function () {
-  photoFormName.value = photoFormLink.value = '';
-  openPopup(photoFormPopup);
-});
+profileEditButton.addEventListener('click', openProfileForm);
+addPhotoButton.addEventListener('click', openAddPhotoForm);
 
 profileFormCloseButton.addEventListener('click', closePopup);
 photoFormCloseButton.addEventListener('click', closePopup);
+photoViewCloseButton.addEventListener('click', closePopup);
 
-profileFormPopup.addEventListener('submit', function (event) {
-  event.preventDefault();
-  updateProfile();
-  closePopup();
-});
-photoFormPopup.addEventListener('submit', function (event) {
-  event.preventDefault();
-  addPhoto();
-  closePopup();
-});
-
-photoViewCloseButton.addEventListener('click', function(evt) {
-  closePhoto();
-});
+profileFormPopup.addEventListener('submit', submitProfileForm);
+photoFormPopup.addEventListener('submit', submitAddPhotoForm);
 
 
 
@@ -110,37 +64,43 @@ function createCard(name, link)
   });
 
   image.addEventListener('click', function (evt) {
-    openPhoto(evt.target.alt, evt.target.src);
+    openPhoto(name, link);
   });
 
   return elementItem;
 }
-function insertPhotoAtBegin(item) {
-  elements.prepend(item);
+function insertPhotoAtBegin(container, item) {
+  container.prepend(item);
 }
 function init()
 {
-  for( let card of initialCards)
+  for( const card of initialCards)
   {
     const item = createCard(card.name, card.link);
-    insertPhotoAtBegin(item);
+    insertPhotoAtBegin(cardsContainer, item);
   }
 }
 
-let popupId = NaN;
+function openProfileForm()
+{
+  profileFormName.value = profileTitle.textContent;
+  profileFormAbout.value = profileSubtitle.textContent;
+  openPopup(profileFormPopup);
+}
+function openAddPhotoForm()
+{
+  photoForm.reset();
+  openPopup(photoFormPopup);
+}
+let currentPopup;
 function openPopup(popup)
 {
-  popupId = popup.id;
+  currentPopup = popup
   popup.classList.add('popup_opened');
-  setTimeout(() => {  popup.style = "opacity: 1;";}, animationDuration);
 }
 
-let popupHover;
 function closePopup() {
-  formCallback = NaN;
-  popupHover = document.querySelector(`#${popupId}:hover`);
-  popupHover.style.opacity = '0';
-  setTimeout(() => {  popupHover.style = ""; popupHover.classList.remove('popup_opened');}, animationDuration);
+  currentPopup.classList.remove('popup_opened');
 }
 
 
@@ -152,20 +112,28 @@ function updateProfile()
 function addPhoto()
 {
   const item = createCard(photoFormName.value, photoFormLink.value);
-  insertPhotoAtBegin(item);
+  insertPhotoAtBegin(cardsContainer, item);
 }
 
 function openPhoto(title, link)
 {
   photoViewTitle.textContent = title;
   photoViewImage.src = link;
+  photoViewImage.alt = title;
 
-  openPopup(photoViewPopuo);
+  openPopup(photoViewPopup);
 }
-let photoHover;
-function closePhoto()
+
+
+function submitProfileForm(event) 
 {
-  photoHover = document.querySelector('#photo-view-popup:hover');
-  photoHover.style.opacity = '0';
-  setTimeout(() => {  photoHover.style = ""; photoHover.classList.remove('popup_opened');}, animationDuration);
+  event.preventDefault();
+  updateProfile();
+  closePopup();
 }
+function submitAddPhotoForm(event) 
+{
+  event.preventDefault();
+  addPhoto();
+  closePopup();
+};

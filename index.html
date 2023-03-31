@@ -35,7 +35,7 @@
                 <h2 class="elements__title">Карачаевск</h2>
                 <button class="elements__heart" type="button" aria-label="Отметить фотографию"></button>
               </div>
-              <button class="elements__trash"></button>
+              <button class="elements__trash" type="button"></button>
             </li>
           </template>
         </ul>
@@ -48,7 +48,7 @@
     <div id="profile-form-popup" class="popup">
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="Отменить изменения"></button>
-        <form class="popup__profile-form" name="profile" method="POST">
+        <form class="popup__form" name="profile" method="POST">
           <h2 class="popup__title">Редактировать профиль</h2>
           <input id="profile-form-name" class="popup__input" type="text" name="profile-name" placeholder="Имя">
           <input id="profile-form-about" class="popup__input" type="text" name="profile-about" placeholder="О себе">
@@ -60,7 +60,7 @@
     <div id="photo-form-popup" class="popup">
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="Отменить изменения"></button>
-        <form class="popup__profile-form" name="profile" method="POST">
+        <form class="popup__form" name="photo" method="POST">
           <h2 class="popup__title">Новое место</h2>
           <input id="photo-form-name" class="popup__input" type="text" name="profile-name" placeholder="Название">
           <input id="photo-form-link" class="popup__input" type="text" name="profile-about" placeholder="Ссылка на картинку">
@@ -69,15 +69,16 @@
       </div>
     </div>
 
-    <div id="photo-view-popup" class="popup">
+    <div id="photo-view-popup" class="popup popup_dark-background">
       <div class="popup__photo-container">
         <img class="popup__photo-image" src="#" alt=""/>
-        <div class="popup__photo-close"></div>
+        <div class="popup__close"></div>
         <h2 class="popup__photo-title">AAA</h2>
       </div>
     </div>
   </div>
 
+  <script src="./scripts/initial-сards.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
 
