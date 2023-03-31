@@ -43,8 +43,7 @@ photoFormPopup.addEventListener('submit', submitAddPhotoForm);
 
 
 
-function createCard(name, link)
-{
+function createCard(name, link) {
   const elementItem = elementTemplate.querySelector('.elements__item').cloneNode(true);
   const image = elementItem.querySelector('.elements__image');
   const title = elementItem.querySelector('.elements__title');
@@ -72,29 +71,24 @@ function createCard(name, link)
 function insertPhotoAtBegin(container, item) {
   container.prepend(item);
 }
-function init()
-{
-  for( const card of initialCards)
-  {
+function init() {
+  for (const card of initialCards) {
     const item = createCard(card.name, card.link);
     insertPhotoAtBegin(cardsContainer, item);
   }
 }
 
-function openProfileForm()
-{
+function openProfileForm() {
   profileFormName.value = profileTitle.textContent;
   profileFormAbout.value = profileSubtitle.textContent;
   openPopup(profileFormPopup);
 }
-function openAddPhotoForm()
-{
+function openAddPhotoForm() {
   photoForm.reset();
   openPopup(photoFormPopup);
 }
 let currentPopup;
-function openPopup(popup)
-{
+function openPopup(popup) {
   currentPopup = popup
   popup.classList.add('popup_opened');
 }
@@ -104,19 +98,16 @@ function closePopup() {
 }
 
 
-function updateProfile()
-{
+function updateProfile() {
   profileTitle.textContent = profileFormName.value;
   profileSubtitle.textContent = profileFormAbout.value;
 }
-function addPhoto()
-{
+function addPhoto() {
   const item = createCard(photoFormName.value, photoFormLink.value);
   insertPhotoAtBegin(cardsContainer, item);
 }
 
-function openPhoto(title, link)
-{
+function openPhoto(title, link) {
   photoViewTitle.textContent = title;
   photoViewImage.src = link;
   photoViewImage.alt = title;
@@ -125,14 +116,12 @@ function openPhoto(title, link)
 }
 
 
-function submitProfileForm(event) 
-{
+function submitProfileForm(event) {
   event.preventDefault();
   updateProfile();
   closePopup();
 }
-function submitAddPhotoForm(event) 
-{
+function submitAddPhotoForm(event) {
   event.preventDefault();
   addPhoto();
   closePopup();
