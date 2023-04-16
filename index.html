@@ -48,10 +48,12 @@
     <div id="profile-form-popup" class="popup">
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="Отменить изменения"></button>
-        <form class="popup__form" name="profile" method="POST">
+        <form class="popup__form" name="profile" method="POST" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input id="profile-form-name" class="popup__input" type="text" name="profile-name" placeholder="Имя">
-          <input id="profile-form-about" class="popup__input" type="text" name="profile-about" placeholder="О себе">
+          <input id="profile-form-name" class="popup__input" type="text" name="profile-name" placeholder="Имя" minlength="2" maxlength="40" required>
+          <span id="profile-form-name-error" class="popup__error">AAA</span>
+          <input id="profile-form-about" class="popup__input" type="text" name="profile-about" placeholder="О себе" minlength="2" maxlength="200" required>
+          <span id="profile-form-about-error" class="popup__error">AAA</span>
           <button class="popup__submit" type="submit">Сохранить</button>
         </form>
       </div>
@@ -79,6 +81,7 @@
   </div>
 
   <script src="./scripts/initial-cards.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
 
