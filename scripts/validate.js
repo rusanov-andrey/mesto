@@ -1,6 +1,5 @@
 function showInputError(input, errorMessageClass) {
   const error_id = `#${input.id}-error`;
-  console.log(`error-id: ${error_id}`);
   const errorElement = document.querySelector(error_id);
   errorElement.classList.add(errorMessageClass);
   errorElement.textContent = input.validationMessage;
@@ -20,6 +19,16 @@ function updateButtonState(button, inputArray) {
     button.disabled = false;
 }
 
+function updateErrorState(input, errorMessageClass) {
+  if(input.validity.valid)
+  {
+    hideInputError(input, errorMessageClass);
+    return;
+  }
+
+  showInputError(input, errorMessageClass);
+}
+
 
 function enableFormValidation(options) {
   const currentForm = options.form;
@@ -28,15 +37,17 @@ function enableFormValidation(options) {
 
   inputArray.forEach(input => {
     input.addEventListener('input', function (evt) {
-      if(input.validity.valid)
-      {
-        hideInputError(input, options.errorMessageClass);
-        return;
-      }
-
-      showInputError(input, options.errorMessageClass);
+      updateErrorState(input, options.errorMessageClass)
     })
   })
+
+  inputArray.forEach(input => {
+    input.addEventListener('focus', function (evt) {
+      console.log(`focus ${evt}`);
+      updateErrorState(input, options.errorMessageClass)
+    })
+  })
+  currentForm.closest('.popup').addEventListener('transitionrun', (evt) => inputArray.forEach(input => {updateErrorState(input, options.errorMessageClass)}));
 
   currentForm.addEventListener('input', function (evt) {
     updateButtonState(submitButton, inputArray);
@@ -50,7 +61,6 @@ function enableValidation(options) {
     const opt = Object.assign( {}, options);
     opt.form = form;
     enableFormValidation(opt);
-    console.log(opt);
   })
 }
 

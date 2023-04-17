@@ -6,6 +6,11 @@ function addPopupCloseFunction() {
       closePopup();
     })
   })
+
+  document.addEventListener('keydown', (evt) => {
+    if(evt.key === 'Escape')
+      closePopup();
+  })
 }
 
 function catchClick(element)
