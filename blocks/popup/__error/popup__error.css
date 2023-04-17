@@ -5,6 +5,7 @@
   opacity: 0;
 
   width: calc(430px - 2*36px);
+  min-height: 15px;
 
   font-size: 12px;
   font-weight: 400;
