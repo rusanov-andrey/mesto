@@ -4,15 +4,19 @@ function showInputError(input, errorMessageClass) {
   errorElement.classList.add(errorMessageClass);
   errorElement.textContent = input.validationMessage;
 }
-function hideInputError(input, errorClass) {
+function hideInputError(input, errorMessageClass) {
   const error_id = `#${input.id}-error`;
   const errorElement = document.querySelector(error_id);
-  errorElement.classList.remove(errorClass);
-  errorElement.textContent = ' ';
+  errorElement.classList.remove(errorMessageClass);
+  errorElement.textContent = '';
+}
+
+function isInputError(inputArray) {
+  return inputArray.some(x => !x.validity.valid);
 }
 
 function updateButtonState(button, inputArray) {
-  const disabled = inputArray.some(x => !x.validity.valid);
+  const disabled = isInputError(inputArray);
   if(disabled)
     button.disabled = true;
   else
@@ -32,8 +36,8 @@ function updateErrorState(input, errorMessageClass) {
 
 function enableFormValidation(options) {
   const currentForm = options.form;
-  const inputArray = Array.from(currentForm.querySelectorAll('.popup__input'));
-  const submitButton = currentForm.querySelector('.popup__submit');
+  const inputArray = Array.from(currentForm.querySelectorAll(options.inputSelector));
+  const submitButton = currentForm.querySelector(options.submitButtonSelector);
 
   inputArray.forEach(input => {
     input.addEventListener('input', function (evt) {
@@ -41,13 +45,11 @@ function enableFormValidation(options) {
     })
   })
 
-  inputArray.forEach(input => {
-    input.addEventListener('focus', function (evt) {
-      console.log(`focus ${evt}`);
-      updateErrorState(input, options.errorMessageClass)
-    })
-  })
-  currentForm.closest('.popup').addEventListener('transitionrun', (evt) => inputArray.forEach(input => {updateErrorState(input, options.errorMessageClass)}));
+  currentForm.closest('.popup').addEventListener('transitionrun', (evt) => {
+    updateButtonState(submitButton, inputArray);
+    inputArray.forEach(input => {
+      updateErrorState(input, options.errorMessageClass)})
+    });
 
   currentForm.addEventListener('input', function (evt) {
     updateButtonState(submitButton, inputArray);
@@ -55,7 +57,7 @@ function enableFormValidation(options) {
 }
 
 function enableValidation(options) {
-  const formArray = Array.from(document.querySelectorAll('.popup__form'));
+  const formArray = Array.from(document.querySelectorAll(options.formSelector));
 
   formArray.forEach(form => {
     const opt = Object.assign( {}, options);

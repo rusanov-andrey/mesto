@@ -87,15 +87,6 @@ function openAddPhotoForm() {
   photoForm.reset();
   openPopup(photoFormPopup);
 }
-let currentPopup;
-function openPopup(popup) {
-  currentPopup = popup
-  popup.classList.add('popup_opened');
-}
-
-function closePopup() {
-  currentPopup.classList.remove('popup_opened');
-}
 
 
 function updateProfile() {

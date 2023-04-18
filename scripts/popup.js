@@ -1,3 +1,26 @@
+function readKeyboard(evt) {
+  if(evt.key === 'Escape') {
+    closePopup();
+  
+    evt.target.removeEventListener('keydown', readKeyboard)
+  }
+}
+
+
+let currentPopup;
+function openPopup(popup) {
+  currentPopup = popup
+
+  document.addEventListener('keydown', readKeyboard);
+
+  popup.classList.add('popup_opened');
+}
+
+function closePopup() {
+  currentPopup.classList.remove('popup_opened');
+}
+
+
 function addPopupCloseFunction() {
   const popupArray = Array.from(document.querySelectorAll('.popup'));
 
@@ -5,11 +28,6 @@ function addPopupCloseFunction() {
     popup.addEventListener('click', (evt) => {
       closePopup();
     })
-  })
-
-  document.addEventListener('keydown', (evt) => {
-    if(evt.key === 'Escape')
-      closePopup();
   })
 }
 
@@ -20,16 +38,19 @@ function catchClick(element)
   })
 }
 
-function configureCloseFunction()
+function configureCloseFunction(options)
 {
   addPopupCloseFunction()
 
-  const image = document.querySelector('.popup__photo-image');
+  const image = document.querySelector(options.imageSelector);
   catchClick(image)
 
-  const formArray = Array.from(document.querySelectorAll('.popup__form'));
+  const formArray = Array.from(document.querySelectorAll(options.formSelector));
   formArray.forEach(form => catchClick(form));
 
 }
 
-configureCloseFunction();
+configureCloseFunction({
+  imageSelector: '.popup__photo-image',
+  formSelector: '.popup__form'
+});
