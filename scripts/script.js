@@ -5,7 +5,6 @@ const profileEditButton = document.querySelector('.profile__edit');
 
 const profileFormPopup = document.querySelector('#profile-form-popup');
 const profileForm = profileFormPopup.querySelector('.popup__form');
-const profileFormCloseButton = profileFormPopup.querySelector('.popup__close');
 const profileFormName = profileForm.querySelector('#profile-form-name');
 const profileFormAbout = profileForm.querySelector('#profile-form-about');
 const profileFormButton = profileForm.querySelector('.popup__submit');
@@ -14,13 +13,11 @@ const addPhotoButton = document.querySelector('.profile__add-photo');
 
 const photoFormPopup = document.querySelector('#photo-form-popup');
 const photoForm = photoFormPopup.querySelector('.popup__form');
-const photoFormCloseButton = photoFormPopup.querySelector('.popup__close');
 const photoFormName = photoForm.querySelector('#photo-form-name');
 const photoFormLink = photoForm.querySelector('#photo-form-link');
 const photoFormButton = photoForm.querySelector('.popup__submit');
 
 const photoViewPopup = document.querySelector('#photo-view-popup');
-const photoViewCloseButton = photoViewPopup.querySelector('.popup__close');
 const photoViewImage = photoViewPopup.querySelector('.popup__photo-image');
 const photoViewTitle = photoViewPopup.querySelector('.popup__photo-title');
 
@@ -33,10 +30,6 @@ init();
 
 profileEditButton.addEventListener('click', openProfileForm);
 addPhotoButton.addEventListener('click', openAddPhotoForm);
-
-profileFormCloseButton.addEventListener('click', closePopup);
-photoFormCloseButton.addEventListener('click', closePopup);
-photoViewCloseButton.addEventListener('click', closePopup);
 
 profileFormPopup.addEventListener('submit', submitProfileForm);
 photoFormPopup.addEventListener('submit', submitAddPhotoForm);
@@ -110,10 +103,10 @@ function openPhoto(title, link) {
 function submitProfileForm(event) {
   event.preventDefault();
   updateProfile();
-  closePopup();
+  closePopup(profileFormPopup);
 }
 function submitAddPhotoForm(event) {
   event.preventDefault();
   addPhoto();
-  closePopup();
+  closePopup(photoFormPopup);
 };
