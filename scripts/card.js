@@ -13,6 +13,7 @@ class CardGalary {
     this._addPhotoButton = document.querySelector('.profile__add-photo');
     this._galary = document.querySelector('.elements');
     this._cardAddForm = new CardEdit()
+    this._elementTemplate = document.querySelector('#element_template').content;
 
     initialCards.forEach(x => {
       this.addPhoto(x);
@@ -22,7 +23,7 @@ class CardGalary {
   }
 
   addPhoto(cardData) {
-    this._galary.prepend( (new CardView(cardData)).element);
+    this._galary.prepend( (new CardView(cardData,  this._elementTemplate)).element);
   }
 
   _addEventListeners()
@@ -35,10 +36,8 @@ class CardGalary {
   }
 }
 
-const elementTemplate = document.querySelector('#element_template').content;
-
 class CardView {
-  constructor(cardData) {
+  constructor(cardData, elementTemplate) {
     this._elementItem = elementTemplate.querySelector('.elements__item').cloneNode(true);
     const image = this._elementItem.querySelector('.elements__image');
     const title = this._elementItem.querySelector('.elements__title');
