@@ -1,6 +1,13 @@
 export {ProfileView, ProfileEdit}
 import {openPopup, closePopup} from './popup.js'
 
+class ProfileData {
+  constructor(name, about) {
+    this.name = name;
+    this.about = about;
+  }
+}
+
 class ProfileView {
   constructor() {
     this._name = document.querySelector('.profile__title');
@@ -12,9 +19,9 @@ class ProfileView {
     this._setEditListeners();
   }
 
-  updateProfile(name, about) {
-    this._name.textContent = name;
-    this._about.textContent = about;
+  updateProfile(profileData) {
+    this._name.textContent = profileData.name;
+    this._about.textContent = profileData.about;
   }
 
   _setEditListeners() {
@@ -22,8 +29,7 @@ class ProfileView {
   }
 
   _open(evt) {
-    console.log('Edit form opened');
-    this._profileEditForm.open(this._name.textContent, this._about.textContent, this);
+    this._profileEditForm.open(new ProfileData(this._name.textContent, this._about.textContent), this);
   }
 }
 
@@ -38,9 +44,9 @@ class ProfileEdit {
     this._setEventListeners();
   }
 
-  open(name, about, view) {
-    this._name.value = name;
-    this._about.value = about;
+  open(profileData, view) {
+    this._name.value = profileData.name;
+    this._about.value = profileData.about;
     this._view = view;
 
     openPopup(this._popup);
@@ -52,7 +58,7 @@ class ProfileEdit {
 
   _submit(evt) {
     evt.preventDefault();
-    this._view.updateProfile(this._name.value, this._about.value);
+    this._view.updateProfile(new ProfileData(this._name.value, this._about.value));
     closePopup(this._popup);
   }
 }

@@ -1,27 +1,29 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
+import {CardData} from './card.js'
+
+export const initialCards = [
+  new CardData(
+    'Архыз',
+    'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  ),
+  new CardData(
+    'Челябинская область',
+    'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  ),
+  new CardData(
+    'Иваново',
+    'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  ),
+  new CardData(
+    'Камчатка',
+    'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  ),
+  new CardData(
+    'Холмогорский район',
+    'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  ),
+  new CardData(
+    'Байкал',
+    'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  ),
 ]; 
 
