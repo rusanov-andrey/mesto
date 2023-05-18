@@ -1,5 +1,5 @@
 
-class Validator {
+class FormValidator {
   constructor(options, form) {
     this._inputArray = Array.from(form.querySelectorAll(options.inputSelector));
     this._submitButton = form.querySelector(options.submitButtonSelector);
@@ -68,7 +68,7 @@ class ValidatorFactory {
     this._validatorsList = [];
 
     formArray.forEach(form => {
-      this._validatorsList.push( new Validator(this._options, form))
+      this._validatorsList.push( new FormValidator(this._options, form))
     })
   }
 }

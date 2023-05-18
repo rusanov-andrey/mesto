@@ -1,6 +1,3 @@
-export {openPopup, closePopup}
-
-
 let popupOpenedClass = '';
 
 function findOpenedPopup() {

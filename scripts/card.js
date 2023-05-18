@@ -1,5 +1,4 @@
-export {CardData, CardGalary, CardView, CardEdit, CardPresentation}
-import {openPopup, closePopup} from './popup.js'
+export {CardData, CardGalary, Card, CardEdit, CardPresentation}
 
 class CardData {
   constructor(name, link) {
@@ -23,7 +22,7 @@ class CardGalary {
   }
 
   addPhoto(cardData) {
-    this._galary.prepend( (new CardView(cardData,  this._elementTemplate)).element);
+    this._galary.prepend( (new Card(cardData,  this._elementTemplate)).element);
   }
 
   _addEventListeners()
@@ -36,7 +35,7 @@ class CardGalary {
   }
 }
 
-class CardView {
+class Card {
   constructor(cardData, elementTemplate) {
     this._elementItem = elementTemplate.querySelector('.elements__item').cloneNode(true);
     const image = this._elementItem.querySelector('.elements__image');
@@ -67,9 +66,6 @@ class CardView {
     return this._elementItem;
   }
 
-  _open(evt) {
-
-  }
 }
 
 class CardEdit {
