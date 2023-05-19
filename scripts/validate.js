@@ -3,7 +3,11 @@ class FormValidator {
   constructor(options, form) {
     this._inputArray = Array.from(form.querySelectorAll(options.inputSelector));
     this._submitButton = form.querySelector(options.submitButtonSelector);
-  
+
+    this._addEventListners( options, form);
+  }
+
+  _addEventListners( options, form) {
     this._inputArray.forEach(input => {
       input.addEventListener('input', (evt) => {
         this._updateErrorState(input, options.errorMessageClass)

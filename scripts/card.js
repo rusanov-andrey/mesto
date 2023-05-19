@@ -38,6 +38,7 @@ class CardGalary {
 class Card {
   constructor(cardData, elementTemplate) {
     this._elementItem = elementTemplate.querySelector('.elements__item').cloneNode(true);
+    this._data = cardData;
     const image = this._elementItem.querySelector('.elements__image');
     const title = this._elementItem.querySelector('.elements__title');
     const heart = this._elementItem.querySelector('.elements__heart');
@@ -49,23 +50,38 @@ class Card {
     image.alt = cardData.name;
     title.textContent = cardData.name;
 
-    heart.addEventListener('click', function (evt) {
-      evt.target.classList.toggle('elements__heart_checked');
-    });
-
-    trash.addEventListener('click', function (evt) {
-      evt.target.closest('.elements__item').remove();
-    });
-
-    image.addEventListener('click', (evt) => {
-      this._presentor.open(new CardData(cardData.name, cardData.link));
-    });
+    this._addEventListners(heart, trash, image);
   }
 
   get element() {
     return this._elementItem;
   }
 
+  _addEventListners(heart, trash, image) {
+    heart.addEventListener('click', (evt) => {
+      this._toggleLike(evt);
+    });
+
+    trash.addEventListener('click', (evt)  => {
+      this._deleteCard(evt);
+    });
+
+    image.addEventListener('click', (evt) => {
+      this._handleImageClick(evt);
+    });
+  }
+
+  _toggleLike(evt) {
+    evt.target.classList.toggle('elements__heart_checked');
+  }
+
+  _deleteCard(evt) {
+    evt.target.closest('.elements__item').remove();
+  }
+
+  _handleImageClick(evt) {
+    this._presentor.open(this._data);
+  }
 }
 
 class CardEdit {
