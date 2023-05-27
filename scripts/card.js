@@ -1,4 +1,5 @@
-export {CardData, CardGalary, Card, CardEdit, CardPresentation}
+export {CardData, CardGalary, Card, CardEdit}
+import {Section} from './section.js'
 
 class CardData {
   constructor(name, link) {
@@ -7,23 +8,28 @@ class CardData {
   }
 }
 
-class CardGalary {
+class CardGalary extends Section {
   constructor(initialCards) {
+    super({items:initialCards, renderer: (cardData) => {return (new Card(cardData,  this._elementTemplate)).element}}, '.elements')
     this._addPhotoButton = document.querySelector('.profile__add-photo');
-    this._galary = document.querySelector('.elements');
-    this._cardAddForm = new CardEdit()
+    //this._galary = document.querySelector('.elements');
+    //this._cardAddForm = new CardEdit()
+    this._cardAddForm = new PopupWithForm('#photo-form-popup', (data) => {
+      this.addItem(new CardData(data.name, data.link));
+    });
+    this._cardAddForm.setEventListeners();
     this._elementTemplate = document.querySelector('#element_template').content;
 
-    initialCards.forEach(x => {
+    /*initialCards.forEach(x => {
       this.addPhoto(x);
-    })
+    })*/
 
     this._addEventListeners();
   }
 
-  addPhoto(cardData) {
+  /*addPhoto(cardData) {
     this._galary.prepend( (new Card(cardData,  this._elementTemplate)).element);
-  }
+  }*/
 
   _addEventListeners()
   {
@@ -31,7 +37,7 @@ class CardGalary {
   }
 
   _openAddForm(evt) {
-    this._cardAddForm.open(this);
+    this._cardAddForm.open(new CardData('', ''));
   }
 }
 
@@ -44,7 +50,7 @@ class Card {
     const heart = this._elementItem.querySelector('.elements__heart');
     const trash = this._elementItem.querySelector('.elements__trash');
 
-    this._presentor = new CardPresentation();
+    this._presentor = new PopupWithImage();
 
     image.src = cardData.link;
     image.alt = cardData.name;
@@ -109,14 +115,14 @@ class CardEdit {
 
   _submit(evt) {
     evt.preventDefault();
-    this._galary.addPhoto(new CardData(this._name.value, this._link.value));
+    this._galary.addItem(new CardData(this._name.value, this._link.value));
     closePopup(this._popup);
   }
 }
 
-class CardPresentation {
+class PopupWithImage extends Popup {
   constructor() {
-    this._popup = document.querySelector('#photo-view-popup');
+    super('#photo-view-popup');
     this._image = this._popup.querySelector('.popup__photo-image');
     this._title = this._popup.querySelector('.popup__photo-title');
   }
@@ -126,6 +132,6 @@ class CardPresentation {
     this._image.alt = cardData.name;
     this._title.textContent = cardData.name;
 
-    openPopup(this._popup);
+    super.open();
   }
 }
