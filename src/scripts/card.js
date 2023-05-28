@@ -1,5 +1,8 @@
 export {CardData, CardGalary, Card, CardEdit}
 import {Section} from './section.js'
+import {Popup} from './popup.js'
+import {PopupWithForm} from './forms.js'
+
 
 class CardData {
   constructor(name, link) {

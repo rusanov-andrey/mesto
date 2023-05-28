@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!--link rel="stylesheet" href="./pages/index.css"-->
   <title>Место</title>
 </head>
 
@@ -12,12 +12,12 @@
   <div class="page">
     <header class="header">
       <div class="header__line">
-        <img class="header__logo" src="./images/mesto.svg" alt="Эмблема Место">
+        <img class="header__logo" src="<%=require('./images/mesto.svg')%>" alt="Эмблема Место">
       </div>
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="./images/profile_image.jpg" alt="Аватар профиля">
+        <img class="profile__avatar" src="<%=require('./images/profile_image.jpg')%>" alt="Аватар профиля">
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button class="profile__edit" type="button" aria-label="Редактировать профиль"></button>
@@ -30,7 +30,7 @@
         <ul class="elements">
           <template id="element_template">
             <li class="elements__item">
-              <img class="elements__image" src="./images/old_church.jpg" alt="Гора"/>
+              <img class="elements__image" src="<%=require('./images/old_church.jpg')%>" alt="Гора"/>
               <div class="elements__title-content">
                 <h2 class="elements__title">Карачаевск</h2>
                 <button class="elements__heart" type="button" aria-label="Отметить фотографию"></button>
@@ -82,10 +82,10 @@
     </div>
   </div>
 
-  <script src="./pages/index.js" type="module"></script>
+  <!--script src="./pages/index.js" type="module"></script>
   <script src="./scripts/validate.js"></script>
   <script src="./scripts/popup.js"></script>
-  <script src="./scripts/forms.js"></script>
+  <script src="./scripts/forms.js"></script-->
 </body>
 
 </html>

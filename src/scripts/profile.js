@@ -1,4 +1,5 @@
 export {UserInfo}
+import {PopupWithForm} from './forms.js'
 
 class ProfileData {
   constructor(name, about) {
