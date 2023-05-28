@@ -1,6 +1,6 @@
 export {CardData, CardGalary, Card, CardEdit}
 import {Section} from './section.js'
-import {Popup} from './popup.js'
+import {PopupWithImage} from './image.js'
 import {PopupWithForm} from './forms.js'
 
 
@@ -110,21 +110,5 @@ class CardEdit {
     evt.preventDefault();
     this._galary.addItem(new CardData(this._name.value, this._link.value));
     closePopup(this._popup);
-  }
-}
-
-class PopupWithImage extends Popup {
-  constructor() {
-    super('#photo-view-popup');
-    this._image = this._popup.querySelector('.popup__photo-image');
-    this._title = this._popup.querySelector('.popup__photo-title');
-  }
-
-  open(cardData) {
-    this._image.src = cardData.link;
-    this._image.alt = cardData.name;
-    this._title.textContent = cardData.name;
-
-    super.open();
   }
 }
