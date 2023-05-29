@@ -14,11 +14,11 @@ export class FormValidator {
       })
     })
   
-    form.closest('.popup').addEventListener('transitionrun', (evt) => {
+    /*form.closest('.popup').addEventListener('transitionrun', (evt) => {
       this._updateButtonState();
       this._inputArray.forEach(input => {
         this._updateErrorState(input, options.errorMessageClass)})
-      });
+      });*/
   
     form.addEventListener('input', (evt) => {
       this._updateButtonState();
