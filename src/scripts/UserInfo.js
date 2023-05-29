@@ -1,12 +1,6 @@
 export {UserInfo}
-import {PopupWithForm} from './forms.js'
-
-class ProfileData {
-  constructor(name, about) {
-    this.name = name;
-    this.about = about;
-  }
-}
+import {PopupWithForm} from './PopupWithForm.js'
+import { ProfileData } from './ProfileData.js';
 
 class UserInfo {
   constructor({nameSelector, aboutSelector}) {

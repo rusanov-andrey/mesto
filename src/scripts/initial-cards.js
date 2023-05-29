@@ -1,4 +1,4 @@
-import {CardData} from './card.js'
+import {CardData} from './CardData.js'
 
 export const initialCards = [
   new CardData(

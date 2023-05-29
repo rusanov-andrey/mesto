@@ -1,5 +1,5 @@
 
-class FormValidator {
+export class FormValidator {
   constructor(options, form) {
     this._inputArray = Array.from(form.querySelectorAll(options.inputSelector));
     this._submitButton = form.querySelector(options.submitButtonSelector);
@@ -61,32 +61,3 @@ class FormValidator {
   }
 }
 
-
-class ValidatorFactory {
-  constructor(options) {
-    this._options = options;
-  }
-
-  createValidators() {
-    const formArray = Array.from(document.querySelectorAll(this._options.formSelector));
-    this._validatorsList = [];
-
-    formArray.forEach(form => {
-      this._validatorsList.push( new FormValidator(this._options, form))
-    })
-  }
-}
-
-function enableValidation(options) {
-  return new ValidatorFactory(options);
-}
-
-const factory = enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_disabled',
-  errorMessageClass: 'popup__error_visible'
-});
-
-factory.createValidators();

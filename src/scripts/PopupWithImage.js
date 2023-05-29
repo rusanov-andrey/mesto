@@ -1,5 +1,5 @@
 export {PopupWithImage}
-import {Popup} from './popup.js'
+import {Popup} from './Popup.js'
 
 class PopupWithImage extends Popup {
   constructor() {
