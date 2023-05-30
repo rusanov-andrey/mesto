@@ -3,24 +3,34 @@ export class FormValidator {
   constructor(options, form) {
     this._inputArray = Array.from(form.querySelectorAll(options.inputSelector));
     this._submitButton = form.querySelector(options.submitButtonSelector);
+    this._options = options;
+    this._form = form;
 
-    this._addEventListners( options, form);
+    this._addEventListners();
   }
 
-  _addEventListners( options, form) {
+  _addEventListners() {
     this._inputArray.forEach(input => {
       input.addEventListener('input', (evt) => {
-        this._updateErrorState(input, options.errorMessageClass)
+        this._updateErrorState(input, this._options.errorMessageClass)
       })
     })
-  
-    /*form.closest('.popup').addEventListener('transitionrun', (evt) => {
+
+    this._form.addEventListener('open', (evt) => {
       this._updateButtonState();
-      this._inputArray.forEach(input => {
-        this._updateErrorState(input, options.errorMessageClass)})
-      });*/
-  
-    form.addEventListener('input', (evt) => {
+    });
+    
+    this._form.addEventListener('reset', (evt) => {
+      setTimeout(() => {
+        this._updateButtonState();
+        this._inputArray.forEach(input => {
+          this._hideInputError(input, this._options.errorMessageClass)
+        })
+      },
+        0)
+    });
+
+    this._form.addEventListener('input', (evt) => {
       this._updateButtonState();
     })
   }
@@ -37,26 +47,27 @@ export class FormValidator {
     errorElement.classList.remove(errorMessageClass);
     errorElement.textContent = '';
   }
-  
-  _isInputError() {
+
+  _hasInvalidInput() {
     return this._inputArray.some(x => !x.validity.valid);
   }
-  
+
   _updateButtonState() {
-    const disabled = this._isInputError();
-    if(disabled)
+    /*const disabled = this._hasInvalidInput();
+    if (disabled)
       this._submitButton.disabled = true;
     else
-      this._submitButton.disabled = false;
+      this._submitButton.disabled = false;*/
+    
+    this._submitButton.disabled = this._hasInvalidInput();
   }
-  
+
   _updateErrorState(input, errorMessageClass) {
-    if(input.validity.valid)
-    {
+    if (input.validity.valid) {
       this._hideInputError(input, errorMessageClass);
       return;
     }
-  
+
     this._showInputError(input, errorMessageClass);
   }
 }

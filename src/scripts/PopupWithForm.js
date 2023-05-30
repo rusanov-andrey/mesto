@@ -23,6 +23,9 @@ class PopupWithForm extends Popup {
       input.value = data[input.name];
     })
 
+    const openEvent = new Event('open', {bubbles: true});
+    this._form.dispatchEvent(openEvent);
+
     super.open();
   }
   close() {
