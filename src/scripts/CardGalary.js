@@ -15,7 +15,7 @@ export class CardGalary extends Section {
         })).element
       }
     }, '.elements');
-    this._presentor = new PopupWithImage();
+    this._presentor = new PopupWithImage('#photo-view-popup');
     this._presentor.setEventListeners();
 
     this._addPhotoButton = document.querySelector('.profile__add-photo');

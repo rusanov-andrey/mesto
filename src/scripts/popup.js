@@ -10,7 +10,7 @@ class Popup {
       popupOpenedClass: 'popup_opened'
     };
 
-    this._readKeyboard = (evt) => {this._handleEscClose(evt);};
+    this._readKeyboard = this._handleEscClose.bind(this);
   }
 
   open() {
