@@ -6,14 +6,18 @@ export class Section {
   }
 
   render() {
-    this._container.innerHTML = '';
+    //this._container.innerHTML = '';
 
     this._items.forEach((x) => {
-      this.addItem(x);
+      this.renderItem(x);
     })
   }
 
-  addItem(item) {
-    this._container.prepend(this._renderer(item));    
+  renderItem(item) {
+    this.addItem(this._renderer(item)); 
+  }
+
+  addItem(element) {
+    this._container.prepend(element);    
   }
 }

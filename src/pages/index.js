@@ -1,6 +1,6 @@
 import './index.css'
 
-import { initialCards } from '../scripts/initial-cards.js';
+import { initialCards } from '../utils/initial-cards.js';
 import { CardGalary } from '../scripts/CardGalary';
 import {UserInfoEditor} from '../scripts/UserInfoEditor.js';
 import { ValidatorFactory } from '../scripts/ValidatorFactory';

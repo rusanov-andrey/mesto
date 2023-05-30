@@ -1,5 +1,6 @@
 export class Card {
-  constructor(cardData, elementTemplate, handleCardClick) {
+  constructor(cardData, templateSelector, handleCardClick) {
+    const elementTemplate = document.querySelector(templateSelector).content;
     this._elementItem = elementTemplate.querySelector('.elements__item').cloneNode(true);
     this._data = cardData;
     const image = this._elementItem.querySelector('.elements__image');
@@ -21,24 +22,19 @@ export class Card {
   }
 
   _addEventListners(heart, trash, image) {
-    heart.addEventListener('click', (evt) => {
-      this._toggleLike(evt);
-    });
-
-    trash.addEventListener('click', (evt)  => {
-      this._deleteCard(evt);
-    });
+    heart.addEventListener('click', Card._toggleLike);
+    trash.addEventListener('click', Card._deleteCard);
 
     image.addEventListener('click', (evt) => {
       this._handleCardClick(this._data);
     });
   }
 
-  _toggleLike(evt) {
+  static _toggleLike(evt) {
     evt.target.classList.toggle('elements__heart_checked');
   }
 
-  _deleteCard(evt) {
+  static _deleteCard(evt) {
     evt.target.closest('.elements__item').remove();
   }
 }
