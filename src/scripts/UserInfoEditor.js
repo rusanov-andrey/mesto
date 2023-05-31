@@ -21,7 +21,7 @@ export class UserInfoEditor {
   }
 
   _open(evt) {
-    this._profileEditForm.open(this._userInfo.getUserInfo(), this);
+    this._profileEditForm.open(this._userInfo.getUserInfo());
   }
 }
 
