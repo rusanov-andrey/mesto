@@ -6,11 +6,11 @@ import { Card } from './Card.js';
 
 
 export class CardGalary extends Section {
-  constructor(initialCards) {
+  constructor(initialCards, api) {
     super({
       items: initialCards,
       renderer: (cardData) => {
-        return (new Card(cardData, '#element_template', (cardData) => {
+        return (new Card(cardData, '#element_template', api, (cardData) => {
           this._presentor.open(cardData);
         })).element
       }
@@ -20,7 +20,10 @@ export class CardGalary extends Section {
 
     this._addPhotoButton = document.querySelector('.profile__add-photo');
     this._cardAddForm = new PopupWithForm('#photo-form-popup', (data) => {
-      this.renderItem(new CardData(data.name, data.link));
+      api.addCard(data).
+      then(cardDataJson => {
+        this.renderItem((new CardData()).fromJSON(cardDataJson, api.profileId));
+      })
     });
     this._cardAddForm.setEventListeners();
 

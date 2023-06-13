@@ -1,14 +1,17 @@
 import {PopupWithForm} from './PopupWithForm.js'
 import { ProfileData } from './ProfileData.js';
-import { UserInfo } from './UserInfo.js';
 
 export class UserInfoEditor {
-  constructor({nameSelector, aboutSelector}) {
-    this._userInfo = new UserInfo({nameSelector, aboutSelector});
+  constructor(userInfo, api) {
+    this._userInfo = userInfo;
     this._editButton = document.querySelector('.profile__edit');
 
     this._profileEditForm = new PopupWithForm('#profile-form-popup', (data) => {
-      this._userInfo.setUserInfo(new ProfileData(data.name, data.about));
+      const profileData = new ProfileData(data.name, data.about, data.avatarLink);
+      api.updateProfileData(profileData.toJSON())
+      .then(updatedProfileJson => {
+        this._userInfo.setUserInfo((new ProfileData()).fromJSON(updatedProfileJson));
+      });
     });
 
     this._profileEditForm.setEventListeners();

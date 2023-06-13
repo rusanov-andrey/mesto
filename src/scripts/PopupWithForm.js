@@ -6,6 +6,7 @@ class PopupWithForm extends Popup {
     super(selector);
     this._submit = submit;
     this._form = this._popup.querySelector('.popup__form');
+    this._data = {};
   }
 
   setEventListeners() {
@@ -19,7 +20,12 @@ class PopupWithForm extends Popup {
   }
 
   open(data) {
-    Array.from(this._form.elements).forEach(input => {
+    this._data = data;
+    Array.from(this._form.elements)
+    .filter(input => {
+      return (input.type !== "button") && (input.type !== "submit")
+    })
+    .forEach(input => {
       input.value = data[input.name];
     })
 
@@ -35,8 +41,12 @@ class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const result = {}
-    Array.from(this._form.elements).forEach(input => {
+    const result = Object.create(this._data || {});
+    Array.from(this._form.elements)
+    .filter(input => {
+      return (input.type !== "button") && (input.type !== "submit")
+    })
+    .forEach(input => {
       result[input.name] = input.value;
     })
 
