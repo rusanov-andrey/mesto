@@ -9,7 +9,7 @@ export class Card {
     const image = this._elementItem.querySelector('.elements__image');
     const title = this._elementItem.querySelector('.elements__title');
     const heart = this._elementItem.querySelector('.elements__heart');
-    const heartCount = this._elementItem.querySelector('.elements__heart-count')
+    this._heartCount = this._elementItem.querySelector('.elements__heart-count')
     const trash = this._elementItem.querySelector('.elements__trash');
 
     this._handleCardClick = handleCardClick;
@@ -21,8 +21,9 @@ export class Card {
     if(cardData.myLike) {
       heart.classList.add('elements__heart_checked')
     }
-    heartCount.textContent = cardData.likeCount;
 
+    this._updateHeartCount();
+    
     if(!cardData.isOwner()) {
       trash.classList.add('elements__trash_invisible');
     }
@@ -35,7 +36,9 @@ export class Card {
   }
 
   _addEventListners(heart, trash, image) {
-    heart.addEventListener('click', Card._toggleLike);
+    heart.addEventListener('click', (evt) => {
+      this._toggleLike(evt);
+    });
     trash.addEventListener('click', (evt) => {
       this._deleteCard(evt);
     });
@@ -45,8 +48,25 @@ export class Card {
     });
   }
 
-  static _toggleLike(evt) {
-    evt.target.classList.toggle('elements__heart_checked');
+  _toggleLike(evt) {
+    if(this._data.myLike) {
+      this._api.unlikeCard(this._data._id)
+      .then((json) => {
+        this._data.fromJSON(json, this._api.profileId);
+        evt.target.classList.remove('elements__heart_checked');    
+        this._updateHeartCount();
+      })
+      .catch(err => console.log(err));
+    }
+    else {
+      this._api.likeCard(this._data._id)
+      .then((json) => {
+        this._data.fromJSON(json, this._api.profileId);
+        evt.target.classList.add('elements__heart_checked');    
+        this._updateHeartCount();
+      })
+      .catch(err => console.log(err));
+    }
   }
 
   _deleteCard(evt) {
@@ -60,5 +80,9 @@ export class Card {
 
     checkForm.setEventListeners();
     checkForm.open();
+  }
+
+  _updateHeartCount() {
+    this._heartCount.textContent = this._data.likeCount;
   }
 }

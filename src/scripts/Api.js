@@ -39,8 +39,12 @@ export class Api {
       });
   }
 
-  likeCard() {}
-  unlikeCard() {}
+  likeCard(id) {
+    return this._put(`/cards/${id}/likes`)
+  }
+  unlikeCard(id) {
+    return this._delete(`/cards/${id}/likes`)
+  }
 
   _get(url) {
     return fetch(`${this._baseUrl}${url}`, {
@@ -54,6 +58,9 @@ export class Api {
   _post(url, data) {
     return this._send(url, 'POST', data);
   }
+  _put(url, data) {
+    return this._send(url, 'PUT', data);
+  }
   _patch(url, data) {
     return this._send(url, 'PATCH', data);
   }
@@ -62,11 +69,15 @@ export class Api {
     return fetch(`${this._baseUrl}${url}`, {
       method: method,
       headers: this._headers,
-      body: JSON.stringify(data),
+      body: JSON.stringify(data || {}),
     })
     .then(res => {
       return this._handleRes(res);
     });
+  }
+
+  _delete(url, data) {
+    return this._send(url, 'DELETE', data);
   }
 
   _handleRes(res) {
@@ -75,5 +86,13 @@ export class Api {
     }
 
     return Promise.reject(`Ошибка ${res.status}`);
-}
+  }
+
+  _handleDel(res) {
+    if(res.ok) {
+      return true;
+    }
+
+    return Promise.reject(`Ошибка ${res.status}`);
+  }
 }
