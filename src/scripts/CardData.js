@@ -23,6 +23,7 @@ export class CardData {
     this.link = json.link;
     this._owner = (json.owner._id === profileId);
     this.likeCount = json.likes.length;
+    this.myLike = json.likes.map(like => like._id).includes(profileId);
 
     return this;
   }

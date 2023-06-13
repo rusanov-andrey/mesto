@@ -18,6 +18,9 @@ export class Card {
     image.alt = cardData.name;
     title.textContent = cardData.name;
 
+    if(cardData.myLike) {
+      heart.classList.add('elements__heart_checked')
+    }
     heartCount.textContent = cardData.likeCount;
 
     if(!cardData.isOwner()) {
