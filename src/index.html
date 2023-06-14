@@ -61,6 +61,18 @@
       </div>
     </div>
 
+    <div id="avatar-form-popup" class="popup">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="Отменить изменения"></button>
+        <form class="popup__form" name="avatar" method="POST" novalidate>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input id="avatar-form-link" class="popup__input" type="url" name="avatar" placeholder="Ссылка на картинку" required>
+          <span id="avatar-form-link-error" class="popup__error"></span>
+          <button class="popup__submit" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
     <div id="photo-form-popup" class="popup">
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="Отменить изменения"></button>
@@ -78,7 +90,7 @@
     <div id="photo-delete-form-popup" class="popup">
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="Отменить изменения"></button>
-        <form class="popup__form" name="photo" method="POST" novalidate>
+        <form class="popup__form" name="photo_delete" method="POST" novalidate>
           <h2 class="popup__title">Вы уверены?</h2>
           <button class="popup__submit" type="submit">Да</button>
         </form>

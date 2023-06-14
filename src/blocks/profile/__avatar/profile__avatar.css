@@ -7,6 +7,12 @@
   height: 118px;
   border-radius: 59px;
   object-fit: cover;
+
+  cursor: url(../../../images/edit-pen-big.svg), pointer;
+}
+
+.profile__avatar:hover {
+  opacity: 0.2;
 }
 
 @media screen and (max-width: 800px) {

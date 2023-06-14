@@ -11,7 +11,10 @@ export class Api {
   updateProfileData(data) {
     return this._patch('/users/me', data)
   }
-  updateProfileAvatar() {}
+  updateProfileAvatar(data) {
+    return this._patch('/users/me/avatar', data)
+  }
+
   setProfileId(id) {
     this._profileId = id;
   }

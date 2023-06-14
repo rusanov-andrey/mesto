@@ -15,12 +15,8 @@ export class ProfileData {
     }
   }
 
-  fromJSON(data) {
-    this.name = data.name;
-    this.about = data.about;
-    this.avatarLink = data.avatar;
-
-    return this;
+  static fromJSON(data) {
+    return new ProfileData(data.name, data.about, data.avatar);
   }
 
 }
