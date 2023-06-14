@@ -7,20 +7,22 @@ export class UserInfoEditor {
     this._editButton = document.querySelector('.profile__edit');
     this._avatar = document.querySelector('.profile__avatar');
 
-    this._profileEditForm = new PopupWithForm('#profile-form-popup', (data) => {
+    this._profileEditForm = new PopupWithForm('#profile-form-popup', async (data) => {
       const profileData = ProfileData.fromJSON(data);
-      api.updateProfileData(profileData.toJSON())
+      const result = await api.updateProfileData(profileData.toJSON())
       .then(updatedProfileJson => {
         this._userInfo.setUserInfo(ProfileData.fromJSON(updatedProfileJson));
+        return true;
       })
       .catch(err => console.log(err));
     });
 
-    this._avatarEditForm = new PopupWithForm('#avatar-form-popup', (data) => {
+    this._avatarEditForm = new PopupWithForm('#avatar-form-popup', async (data) => {
       const profileData = ProfileData.fromJSON(data);
-      api.updateProfileAvatar(profileData.toJSON())
+      const result = await api.updateProfileAvatar(profileData.toJSON())
       .then(updatedProfileJson => {
         this._userInfo.setUserInfo(ProfileData.fromJSON(updatedProfileJson));
+        return true;
       })
       .catch(err => console.log(err));
     });

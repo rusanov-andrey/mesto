@@ -1,5 +1,3 @@
-import { fromJSON } from "postcss";
-
 export class CardData {
   constructor(name, link, owner) {
     this.name = name;
@@ -17,15 +15,17 @@ export class CardData {
       link: this.link,
     }
   }
-  fromJSON(json, profileId) {
-    this._id = json._id;
-    this.name = json.name;
-    this.link = json.link;
-    this._owner = (json.owner._id === profileId);
-    this.likeCount = json.likes.length;
-    this.myLike = json.likes.map(like => like._id).includes(profileId);
+  
+  static fromJSON(json, profileId) {
+    let result = new CardData(json.name, json.link);
+    result._id = json._id;
+    //result.name = json.name;
+    //result.link = json.link;
+    result._owner = (json.owner._id === profileId);
+    result.likeCount = json.likes.length;
+    result.myLike = json.likes.map(like => like._id).includes(profileId);
 
-    return this;
+    return result;
   }
 }
 

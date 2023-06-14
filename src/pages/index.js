@@ -45,7 +45,7 @@ const initialCards = await api.getCards()
 .then(async cardData => {
   const userInfo = await userInfoPromise;
   return cardData.map(item => {
-    return (new CardData()).fromJSON(item, api.profileId);
+    return CardData.fromJSON(item, api.profileId);
   })
 })
 .catch(err => {

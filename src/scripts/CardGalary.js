@@ -19,11 +19,13 @@ export class CardGalary extends Section {
     this._presentor.setEventListeners();
 
     this._addPhotoButton = document.querySelector('.profile__add-photo');
-    this._cardAddForm = new PopupWithForm('#photo-form-popup', (data) => {
-      api.addCard(data).
-      then(cardDataJson => {
-        this.renderItem((new CardData()).fromJSON(cardDataJson, api.profileId));
+    this._cardAddForm = new PopupWithForm('#photo-form-popup', async (data) => {
+      const result = await api.addCard(data)
+      .then(cardDataJson => {
+        this.renderItem(CardData.fromJSON(cardDataJson, api.profileId));
+        return true;
       })
+      .catch(err => console.log(err));
     });
     this._cardAddForm.setEventListeners();
 

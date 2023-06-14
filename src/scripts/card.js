@@ -1,4 +1,5 @@
 import { PopupWithForm } from "./PopupWithForm.js";
+import { CardData } from "./CardData.js";
 
 export class Card {
   constructor(cardData, templateSelector, api, handleCardClick) {
@@ -52,7 +53,7 @@ export class Card {
     if(this._data.myLike) {
       this._api.unlikeCard(this._data._id)
       .then((json) => {
-        this._data.fromJSON(json, this._api.profileId);
+        this._data = CardData.fromJSON(json, this._api.profileId);
         evt.target.classList.remove('elements__heart_checked');    
         this._updateHeartCount();
       })
@@ -61,7 +62,7 @@ export class Card {
     else {
       this._api.likeCard(this._data._id)
       .then((json) => {
-        this._data.fromJSON(json, this._api.profileId);
+        this._data = CardData.fromJSON(json, this._api.profileId);
         evt.target.classList.add('elements__heart_checked');    
         this._updateHeartCount();
       })

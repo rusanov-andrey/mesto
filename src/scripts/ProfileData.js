@@ -1,5 +1,3 @@
-import { fromJSON } from "postcss";
-
 export class ProfileData {
   constructor(name, about, avatarLink) {
     this.name = name;
