@@ -19,7 +19,7 @@ export class FormValidator {
     this._form.addEventListener('open', (evt) => {
       this._updateButtonState();
     });
-    
+
     this._form.addEventListener('reset', (evt) => {
       setTimeout(() => {
         this._updateButtonState();
@@ -53,12 +53,6 @@ export class FormValidator {
   }
 
   _updateButtonState() {
-    /*const disabled = this._hasInvalidInput();
-    if (disabled)
-      this._submitButton.disabled = true;
-    else
-      this._submitButton.disabled = false;*/
-    
     this._submitButton.disabled = this._hasInvalidInput();
   }
 

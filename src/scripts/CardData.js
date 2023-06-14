@@ -17,10 +17,8 @@ export class CardData {
   }
   
   static fromJSON(json, profileId) {
-    let result = new CardData(json.name, json.link);
+    const result = new CardData(json.name, json.link);
     result._id = json._id;
-    //result.name = json.name;
-    //result.link = json.link;
     result._owner = (json.owner._id === profileId);
     result.likeCount = json.likes.length;
     result.myLike = json.likes.map(like => like._id).includes(profileId);

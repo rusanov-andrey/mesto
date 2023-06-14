@@ -18,7 +18,7 @@ class PopupWithForm extends Popup {
       const buttonTitle = this._submitButton.textContent;
       this._submitButton.textContent = 'Сохранение...';
       this._submit(this._getInputValues());
-      this.close();
+      //this.close();
       this._submitButton.textContent = buttonTitle;
     });
   }
@@ -42,6 +42,10 @@ class PopupWithForm extends Popup {
     super.close();
 
     this._form.reset();
+  }
+
+  get form() {
+    return this._form;
   }
 
   _getInputValues() {
