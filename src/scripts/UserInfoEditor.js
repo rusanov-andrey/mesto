@@ -12,7 +12,8 @@ export class UserInfoEditor {
       api.updateProfileData(profileData.toJSON())
       .then(updatedProfileJson => {
         this._userInfo.setUserInfo(ProfileData.fromJSON(updatedProfileJson));
-      });
+      })
+      .catch(err => console.log(err));
     });
 
     this._avatarEditForm = new PopupWithForm('#avatar-form-popup', (data) => {
@@ -20,7 +21,8 @@ export class UserInfoEditor {
       api.updateProfileAvatar(profileData.toJSON())
       .then(updatedProfileJson => {
         this._userInfo.setUserInfo(ProfileData.fromJSON(updatedProfileJson));
-      });
+      })
+      .catch(err => console.log(err));
     });
 
     this._profileEditForm.setEventListeners();
